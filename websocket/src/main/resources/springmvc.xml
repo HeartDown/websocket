@@ -20,4 +20,21 @@
     </bean>
     <!-- 靜態資源訪問 -->
     <mvc:resources mapping="/static/**" location="/static/" />
+
+    <!-- 配置springMVC多文件上传 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding">
+            <value>UTF-8</value>
+        </property>
+        <property name="maxUploadSize">
+            <value>32505856</value> <!-- 上传文件大小限制为31M，31*1024*1024 -->
+        </property>
+        <property name="maxInMemorySize">
+            <value>4096</value>
+        </property>
+    </bean>
+    <!-- Interceptor handlers -->
+    <mvc:interceptors>
+        <bean class="dmp.framework.web.intercepter.TokenInterceptor" />
+    </mvc:interceptors>
 </beans>

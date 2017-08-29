@@ -1,4 +1,6 @@
+import com.model.Content;
 import com.model.User;
+import com.service.ContentService;
 import com.service.UserService;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
