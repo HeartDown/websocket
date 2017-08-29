@@ -1,16 +1,7 @@
-import com.dao.UserDao;
-import com.dao.daoimpl.UserDaoImpl;
 import com.model.User;
-import com.mongodb.DB;
-import com.mongodb.Mongo;
 import com.service.UserService;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * Created by zhangheng on 2017/8/7.
@@ -23,10 +14,14 @@ public class TestDb {
                     String[]{"classpath:applicationContext-mongo.xml",
                     "classpath:springmvc.xml"});
             UserService userService = (UserService) context.getBean("userService");
-            User list = (User) userService.findById("3");
+
+            User list = (User) userService.findById("1");
+//            list.setId(null);
+//            list.setEmail("aaa22222a@qq.com");
+//            userService.insert(list,"zh");
 //            for (User user:
 //                 list) {
-                System.out.println(list.getName()+":"+list.getId());
+                System.out.println(list.getEmail()+":"+list.getId());
 //            }
 //            Mongo mongo = new Mongo("127.0.0.1",27017);
 //            DB db = mongo.getDB("zh");

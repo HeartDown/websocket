@@ -10,10 +10,36 @@ import java.io.Serializable;
 @Document
 public class User implements Serializable{
     private String id;
-    private String name;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    private String username;
+
+    public String getUserrole() {
+        return userrole;
+    }
+
+    public void setUserrole(String userrole) {
+        this.userrole = userrole;
+    }
+
+    private String userrole;
+    private String email;
     private int age;
     private String password;
+    public String getEmail() {
+        return email;
+    }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
     public String getId() {
         return id;
     }
@@ -22,13 +48,7 @@ public class User implements Serializable{
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public int getAge() {
         return age;
