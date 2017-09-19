@@ -7,7 +7,7 @@ import java.io.Serializable;
 /**
  * Created by zhangheng on 2017/8/7.
  */
-@Document
+
 public class User implements Serializable{
     private String id;
 

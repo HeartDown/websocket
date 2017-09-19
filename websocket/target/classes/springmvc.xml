@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context" xsi:schemaLocation="
                 http://www.springframework.org/schema/beans
-                http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+                http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
                 http://www.springframework.org/schema/context
-                http://www.springframework.org/schema/context/spring-context-3.1.xsd
+                http://www.springframework.org/schema/context/spring-context-3.2.xsd
                 http://www.springframework.org/schema/mvc
-                http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
+                http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
     <context:annotation-config />
     <mvc:annotation-driven />
     <context:component-scan base-package="com.*">
@@ -15,9 +15,35 @@
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
         <property name="contentType" value="text/html;charset=UTF-8" />
-        <property name="prefix" value="" />
+        <property name="prefix" value="/view/" />
         <property name="suffix" value=".jsp"/>
     </bean>
     <!-- 靜態資源訪問 -->
     <mvc:resources mapping="/static/**" location="/static/" />
+
+    <!-- 配置springMVC多文件上传 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding">
+            <value>UTF-8</value>
+        </property>
+        <property name="maxUploadSize">
+            <value>32505856</value> <!-- 上传文件大小限制为31M，31*1024*1024 -->
+        </property>
+        <property name="maxInMemorySize">
+            <value>4096</value>
+        </property>
+    </bean>
+    <mvc:annotation-driven>
+    </mvc:annotation-driven>
+    <!-- Interceptor handlers -->
+    <mvc:interceptors>
+        <bean class="web.interceptor.TokenInterceptor"/>
+        <!--<mvc:interceptor>-->
+            <!--<mvc:mapping path="/*/*.zh"/>-->
+            <!--<mvc:mapping path="/*/*.ajax"/>-->
+            <!--<mvc:mapping path="/*/*/*.zh"/>-->
+            <!--<mvc:mapping path="/*/*/*.ajax"/>-->
+            <!--<bean class="web.interceptor.TokenInterceptor" />-->
+        <!--</mvc:interceptor>-->
+    </mvc:interceptors>
 </beans>
