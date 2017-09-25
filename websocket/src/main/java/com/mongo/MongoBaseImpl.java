@@ -7,7 +7,9 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 
 import javax.annotation.Resource;
+import java.lang.reflect.Field;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by zhangheng on 2017/8/7.
@@ -20,9 +22,19 @@ public class MongoBaseImpl<T> implements MongoBase<T>{
             this.entityClass = ReflectUtil.findParameterizedType(getClass());
     }
 
+
     private Class<T> entityClass;
-    public void insert(T object, String connectionName) {
-        template.insert(object,connectionName);
+    public void insert(T object) {
+        try {
+            //主动给当前实体类设置id值
+            Field field = entityClass.getField("id");
+            field.set(object,UUID.randomUUID().toString());
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        template.insert(object);
     }
 
     @Override
@@ -31,30 +43,30 @@ public class MongoBaseImpl<T> implements MongoBase<T>{
     }
 
     @Override
-    public T findOne(Query query, String connectionName) {
-        return template.findOne(query,entityClass,connectionName);
+    public T findOne(Query query) {
+        return template.findOne(query,entityClass);
     }
     @Override
-    public List<T> findAll(String collectionName) {
+    public List<T> findAll() {
         return template.findAll(entityClass);
     }
 
     @Override
-    public List<T> findAllByQuery(Query query, String collectionName) {
-        return template.find(query,entityClass,collectionName);
+    public List<T> findAllByQuery(Query query) {
+        return template.find(query,entityClass);
     }
 
     @Override
-    public int upsert(Query query, Update update, String collectionName) {
-       return template.upsert(query,update,entityClass,collectionName).getN();
+    public int upsert(Query query, Update update) {
+       return template.upsert(query,update,entityClass).getN();
     }
     @Override
     public void createCollection(String collectionName) {
         template.createCollection(collectionName);
     }
     @Override
-    public int remove(Query query, String collectionName) {
-       return template.remove(query,collectionName).getN();
+    public int remove(Query query) {
+       return template.remove(query).getN();
     }
 
     @Override

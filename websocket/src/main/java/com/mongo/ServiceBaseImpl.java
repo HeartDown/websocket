@@ -15,8 +15,8 @@ public class ServiceBaseImpl<T> implements ServiceBase<T>{
 
     protected MongoBase<T> mongoBase;
     @Override
-    public void insert(T object, String connectionName) {
-        mongoBase.insert(object,connectionName);
+    public void insert(T object) {
+        mongoBase.insert(object);
     }
 
     @Override
@@ -25,23 +25,23 @@ public class ServiceBaseImpl<T> implements ServiceBase<T>{
     }
 
     @Override
-    public T findOne(Query query, String connectionName) {
-        return mongoBase.findOne(query,connectionName);
+    public T findOne(Query query) {
+        return mongoBase.findOne(query);
     }
 
     @Override
-    public List<T> findAll(String collectionName) {
-        return mongoBase.findAll(collectionName);
+    public List<T> findAll() {
+        return mongoBase.findAll();
     }
 
     @Override
-    public List<T> findAllByQuery(Query query, String collectionName) {
-        return mongoBase.findAllByQuery(query,collectionName);
+    public List<T> findAllByQuery(Query query) {
+        return mongoBase.findAllByQuery(query);
     }
 
     @Override
-    public int upsert(Query query, Update update, String collectionName) {
-        return mongoBase.upsert(query,update,collectionName);
+    public int upsert(Query query, Update update) {
+        return mongoBase.upsert(query,update);
     }
 
     @Override
@@ -50,8 +50,8 @@ public class ServiceBaseImpl<T> implements ServiceBase<T>{
     }
 
     @Override
-    public int remove(Query query, String collectionName) {
-        return mongoBase.remove(query,collectionName);
+    public int remove(Query query) {
+        return mongoBase.remove(query);
     }
 
     @Override
