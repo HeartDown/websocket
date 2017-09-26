@@ -36,7 +36,12 @@
             <artifactId>jackson-databind</artifactId>
             <version>2.6.3</version>
         </dependency>
-
+        <!-- 对JDK8中Time的支持 -->
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>2.9.9</version>
+        </dependency>
 
         <dependency>
             <groupId>javax.servlet</groupId>

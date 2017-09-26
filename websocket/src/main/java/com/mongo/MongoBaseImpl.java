@@ -26,8 +26,8 @@ public class MongoBaseImpl<T> implements MongoBase<T>{
     private Class<T> entityClass;
     public void insert(T object) {
         try {
-            //主动给当前实体类设置id值
-            Field field = entityClass.getField("id");
+            //主动给当前实体类设置id值(Declared是对私有属性访问)
+            Field field = entityClass.getDeclaredField("id");
             field.set(object,UUID.randomUUID().toString());
         } catch (NoSuchFieldException e) {
             e.printStackTrace();

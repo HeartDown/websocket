@@ -1,0 +1,57 @@
+body{
+    font-size: 12px;
+    font-family: 'Microsoft Yahei';
+    background: #f5e5c1
+    url(http://cs.itbyc.com/bgimg_top%5B1%5D.jpg) 50% top scroll no-repeat !important;
+    background-size: 100%;
+    color: #272a30;
+}
+.layout{
+        border: 1px solid #d7dde4;
+        background: #f5f7f9;
+        position: relative;
+        border-radius: 4px;
+        overflow: hidden;
+    }
+header{
+    padding: 50px 0 0 0;
+    width: 1100px;
+    height: 77px;
+    margin: auto;
+}
+.loginrow{
+	border: 1px solid #d7dde4;
+        background: #f5f7f9;
+        position: relative;
+        border-radius: 4px;
+        overflow: hidden;
+        margin-top: 40px;
+}
+.changetheme{
+	 height: 100%;
+	 -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 40px;
+}
+.blogstatus{
+	float: right;
+    color: #757575;
+    margin-right: 10px;
+    margin-top: 25px;
+    text-align: right;
+}
+.ulblog{
+	align-items: center;
+}
+.menugroup{
+	width: 100%!important;
+}
+.ulmenu{
+	height: 100%;
+    background-color: #495060;
+}
+.mainblog{
+    background-color: #F5F5F5;
+}

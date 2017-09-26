@@ -1,26 +1,22 @@
 package com.model;
 
-import org.springframework.data.mongodb.core.mapping.Document;
-
 import java.io.Serializable;
 
 /**
  * Created by zhangheng on 2017/8/7.
  */
 
-public class User implements Serializable{
+public class User implements Serializable {
     private static final long serialVersionUID = 1L;
     private String id;
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
 
     private String username;
+
+
+    private String personinfo;
+
+    private String password;
 
     public String getPersoninfo() {
         return personinfo;
@@ -30,27 +26,15 @@ public class User implements Serializable{
         this.personinfo = personinfo;
     }
 
-    private String personinfo;
-
-    public String getUserrole() {
-        return userrole;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserrole(String userrole) {
-        this.userrole = userrole;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    private String userrole;
-    private String email;
-    private int age;
-    private String password;
-    public String getEmail() {
-        return email;
-    }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
     public String getId() {
         return id;
     }
@@ -59,15 +43,6 @@ public class User implements Serializable{
         this.id = id;
     }
 
-
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
 
     public String getPassword() {
         return password;
