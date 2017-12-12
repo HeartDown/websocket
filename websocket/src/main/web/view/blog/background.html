@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../../static/js/globle.js"></script>
+    <link rel="stylesheet" href="../../static/css/syle.css"/>
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <i-table stripe :columns="columns1" :data="getData"></i-table>
+</div>
+</body>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            columns1: [
+                {
+                    title: '发布人',
+                    key: 'name'
+                },
+                {
+                    title: '发布日期',
+                    key: 'age'
+                },
+                {
+                    title: '标题',
+                    key: 'address'
+                },
+                {
+                    title: '操作',
+                    key: 'caozuo'
+                }
+            ]
+        },
+        methods:{
+            getData:function () {
+                axios({
+                    method:'post',
+                    url:'http://localhost:8080/getData',
+                })
+            }
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="/static/js/jquery.min.js"></script>
+    <title>$Title$</title>
+</head>
+<body>
+<script type="text/javascript">
+    var webSocket =null;
+    if('WebSocket'in window){
+        webSocket=new WebSocket("ws://localhost:8080/chat");
+    }else {
+        alert("no socket");
+    }
+    webSocket.onerror=function () {
+        setMessageInnerHTML("error");
+    }
+    webSocket.onopen=function () {
+        setMessageInnerHTML("open");
+    }
+    webSocket.onmessage=function () {
+        setMessageInnerHTML(event.data);
+    }
+    webSocket.onclose=function () {
+        setMessageInnerHTML("close");
+    }
+    window.onbeforeunload=function () {
+        webSocket.close();
+    }
+    function setMessageInnerHTML(innerHtml) {
+        document.getElementById('message').innerHTML+=innerHtml+'<br>';
+    }
+    function closeWebSocket() {
+        webSocket.close();
+    }
+    function send() {
+        alert($("#content").val());
+        webSocket.send($("#content").val());
+    }
+</script>
+welcome<br>
+<input type="text" id="content"><button onclick="send()" >Send</button>
+<button onclick="closeWebSocket()">close</button>
+<div id="message"></div>
+</body>
+</html>
