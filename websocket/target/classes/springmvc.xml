@@ -10,17 +10,24 @@
                 http://www.springframework.org/schema/mvc
                 http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
     <context:annotation-config />
+    <!--  -->
     <mvc:annotation-driven />
+    <!-- 定义控制器扫描包路径 -->
     <context:component-scan base-package="com.*">
         <context:include-filter type="annotation"
                                 expression="org.springframework.stereotype.Controller" />
     </context:component-scan>
-    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <!-- 定义JSP视图解析器 -->
+    <bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
         <property name="contentType" value="text/html;charset=UTF-8" />
         <property name="prefix" value="/view/" />
         <property name="suffix" value=".jsp"/>
+        <property name="order" value="1" />
     </bean>
+
+    <!-- 定义HTML视图解析器 -->
+<!-- 定义json转换器 -->
     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
         <property name="messageConverters">
             <list>
@@ -42,7 +49,7 @@
             <value>4096</value>
         </property>
     </bean>
-    <!-- Interceptor handlers -->
+    <!-- 定义请求拦截器 -->
     <mvc:interceptors>
         <bean class="web.interceptor.TokenInterceptor"/>
     </mvc:interceptors>

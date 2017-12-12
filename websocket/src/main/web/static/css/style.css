@@ -765,7 +765,45 @@ figure figcaption {
     padding-left: 15px;
   }
 }
-
+.chat{
+  position: fixed;
+  top: 60%;
+  z-index: 999;
+  right: 8px;
+  width: 200px;
+  height: 200px;
+  background-color: #cce6cd;
+}
+#chatbtn{
+  position: fixed;
+  top: 60%;
+  z-index: 999;
+  right: 8px;
+  width: 80px;
+  height: 0px;
+  background-color: #cce6cd;
+}
+#messageInput{
+  height: 38px;
+  margin: 0px;
+  width: 138px;
+}
+#historyMsg{
+  height: 99px;
+  margin: 5px;
+  background-color: #fff;
+  overflow: auto;
+  padding: 2px;
+}
+#sendBtn{
+  margin-top: 2px;
+  float: right;
+}
+.controller{
+  height: 40px;
+  margin: 5px 0px;
+  position: relative;
+}
 .cp-r {
   padding-right: 50px;
 }

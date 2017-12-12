@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://D:\Java\IDE\03GJB\01code\01trunk\webstudy\websocket\studyboot.iml" filepath="D:\Java\IDE\03GJB\01code\01trunk\webstudy\websocket\studyboot.iml" />
       <module fileurl="file://$PROJECT_DIR$/websocket/websocket.iml" filepath="$PROJECT_DIR$/websocket/websocket.iml" />
     </modules>
   </component>

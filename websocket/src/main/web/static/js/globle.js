@@ -5,7 +5,7 @@ function getUrl() {
 }
 
 importCss("/static/css/iview.css");
-importJs("/static/js/jquery-3.1.1.min.js");
+importJs("/static/js/jquery.min.js");
 importJs("/static/js/vue.min.js");
 importJs("/static/js/iview.min.js");
 importJs("/static/js/layer/layer.js");

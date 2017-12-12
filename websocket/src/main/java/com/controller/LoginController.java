@@ -2,10 +2,12 @@ package com.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.cache.redis.cacheStorage.RedisCache;
 import com.model.User;
 import com.service.ContentService;
 import com.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -33,8 +35,10 @@ import static java.util.stream.Collectors.toList;
 public class LoginController {
     @Resource
     private UserService userService;
+    @Lazy
     @Autowired
     private ContentService contentService;
+
     @RequestMapping(value = "/login")
     public String login(HttpServletRequest request) {
         Cookie[] cookies = request.getCookies();
@@ -68,7 +72,7 @@ public class LoginController {
     public String login(@RequestParam String formitem, HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
         User user = JSONObject.parseObject(formitem, User.class);
         Map result = new HashMap<String, Object>();
-        if (userService.login(user)) {
+         if (userService.login(user)) {
             //写入客户端cookie
             Cookie cookie = new Cookie("userinfo",
                     URLEncoder.encode(JSON.toJSONString(user), "utf-8"));
@@ -80,12 +84,9 @@ public class LoginController {
             result.put("msg", "password is not correct");
         }
         request.getSession().setAttribute("currentUser", user);
-//        userService.insert(user);
-//        result.put("status","success");
-//        result.put("msg","new a user,thank you");
-        System.out.println(JSON.toJSONString(result));
         return JSON.toJSONString(result);
     }
+
 
     @RequestMapping("getUser")
     @ResponseBody

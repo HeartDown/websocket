@@ -36,23 +36,36 @@
     <!-- Icomoon -->
     <link rel="stylesheet" href="../../static/css/icomoon.css">
     <!-- Bootstrap  -->
-    <link rel="stylesheet" href="../../static/css/bootstrap.css">
+    <link rel="stylesheet" href="../../static/css/bootstrap.min.css">
 
     <link rel="stylesheet" href="../../static/css/style.css">
 
-
     <%--<!-- Modernizr JS -->--%>
     <script src="../../static/js/modernizr-2.6.2.min.js"></script>
-    <%--<!-- FOR IE9 below -->--%>
-    <%--<!--[if lt IE 9]>--%>
-    <script src="../../static/js/respond.min.js"></script>
+
     <![endif]-->
     <script type="text/javascript" src="/static/js/vue.min.js"></script>
 
 </head>
 <body>
+<div  id="chatbtn">
+    <input value="多人聊天室" type="button" onclick="showChat()" class="btn btn-primary">
+</div>
+<div class="chat" id="chatdiv" hidden>
+    <div class="status">
+        <h6>Hi,和我聊聊 :)</h6>
+        <span class="glyphicon glyphicon-remove" id="status" aria-hidden="true" onclick="closeWebSocket()"></span>
+    </div>
+    <div id="historyMsg"></div>
+    <div class="controller">
+        <textarea id="messageInput" placeHolder="enter to send"></textarea>
+        <input type="button" value="发送" onclick="send()" id="sendBtn" class="btn btn-primary">
+    </div>
+</div>
+
 <!-- 左侧隐藏 -->
 <div id="fh5co-offcanvas">
+
     <a href="#" class="fh5co-close-offcanvas js-fh5co-close-offcanvas"><span><i
             class="icon-cross3"></i> <span>Close</span></span></a>
     <!-- 个人信息栏 -->
@@ -63,7 +76,7 @@
         <h3 class="heading">个人信息</h3>
         <h2><%=((User) request.getSession().getAttribute("currentUser")).getUsername()%>
         </h2>
-        <p>&ldquo;已经走到尽头的东西，重生也不过是再一次的消亡。就像所有的开始，其实都只是一个写好了的结局。 &rdquo;</p>
+        <p>&ldquo;<%=((User) request.getSession().getAttribute("currentUser")).getPersoninfo()%>&rdquo;</p>
         <ul class="fh5co-social">
             <li title="分享到twitter"><a href="#"><i class="icon-twitter"></i></a></li>
             <li title="分享到facebook"><a href="#"><i class="icon-facebook"></i></a></li>
@@ -84,7 +97,7 @@
         </div>
         <div class="fh5co-box">
             <h3 class="heading">Search</h3>
-            <form action="#">
+            <form action="search">
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Type a keyword">
                 </div>
@@ -105,26 +118,21 @@
             </ul>
             <div class="col-lg-12 col-md-12 text-center">
                 <h1 id="fh5co-logo"><a href="#">个人博客 <sup>ZH</sup></a></h1>
+                <div class="fh5co-box">
+
+                    <form action="search">
+                        <div class="form-group">
+                            <h3 class="heading">Search</h3>
+                            <input type="text" class="form-control" placeholder="Type a keyword">
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
 </header>
 <!-- 主要内容-->
 <div class="container-fluid" >
-    <%--<transition name="info">--%>
-    <%--<div v-if="show" class="row fh5co-post-entry" >--%>
-    <%--<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box" v-for="(blog,index) in blogs">--%>
-        <%--<figure>--%>
-            <%--<a href="http://www.baidu.com">--%>
-                <%--<img src="/static/images/pic_1.jpg" alt="Image" class="img-responsive">--%>
-            <%--</a>--%>
-        <%--</figure>--%>
-        <%--<span class="fh5co-meta"><a href="blog.id">{{blog.slug}}</a></span>--%>
-        <%--<h2 class="fh5co-article-title"><a href="blog.id">{{blog.title}}</a></h2>--%>
-        <%--<span class="fh5co-meta fh5co-date">{{blog.created}}</span>--%>
-    <%--</article>--%>
-    <%--</div>--%>
-    <%--</transition>--%>
 
 <div class="row fh5co-post-entry">
         <%
@@ -139,8 +147,8 @@
                          class="img-responsive"></a>
             </figure>
             <span class="fh5co-meta"><a
-                    href="blogContent.html?id=<%=content.getId()%>"><%=content.getSlug()%></a></span>
-            <h2 class="fh5co-article-title"><a href="blogContent.html?id=<%=content.getId()%>"><%=content.getTitle()%>
+                    href="blogContent?id=<%=content.getId()%>"><%=content.getSlug()%></a></span>
+            <h2 class="fh5co-article-title"><a href="blogContent?id=<%=content.getId()%>"><%=content.getTitle()%>
             </a></h2>
             <span class="fh5co-meta fh5co-date"><%=content.getCreated()%></span>
         </article>

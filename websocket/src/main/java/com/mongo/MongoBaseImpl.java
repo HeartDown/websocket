@@ -28,7 +28,8 @@ public class MongoBaseImpl<T> implements MongoBase<T>{
         try {
             //主动给当前实体类设置id值(Declared是对私有属性访问)
             Field field = entityClass.getDeclaredField("id");
-            field.set(object,UUID.randomUUID().toString());
+            field.setAccessible(true);
+            field.set(object,UUID.randomUUID().toString().replaceAll("-",""));
         } catch (NoSuchFieldException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {

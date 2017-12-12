@@ -43,6 +43,7 @@ $(function () {
                     ,btn: ['必须啊', '不，再想想']
                     ,yes: function(index){
                         vm.blog.content=editor.txt.html();
+                        vm.blog.coverUrl='images/'+vm.file.name;
                         var date = new Date();
                         var dateformmater = date.getFullYear()+"-"+((date.getMonth()+1)<10?'0'+(date.getMonth()+1):(date.getMonth()+1))+"-"+
                             ((date.getDate()+1)<10?'0'+(date.getDate()+1):(date.getDate()+1));
@@ -61,6 +62,8 @@ $(function () {
                             }
                         }).then(function (response) {
                             if(response.data){
+                                //上传图片
+                                vm.uploads();
                                 alert(JSON.stringify(response.data.message));
                                 window.location.href=getUrl()+"/seeBlog";
                             }
@@ -78,9 +81,6 @@ $(function () {
                 this.$refs.upload.upload(this.file);
                 // this.$emit('before-upload',this.loadingStatus );
                 setTimeout(() =>{
-                    this.blog.coverUrl='images/'+this.file.name;
-                    this.file = null;
-                    this.loadingStatus = false;
                     this.$Message.success("上传成功");
                 },500);
             }

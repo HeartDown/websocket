@@ -19,7 +19,42 @@
             </plugin>
         </plugins>
     </build>
+    <properties>
+        <sonar.jdbc.url>
+
+        </sonar.jdbc.url>
+        <sonar.jdbc.username>
+
+        </sonar.jdbc.username>
+        <sonar.jdbc.password>
+
+        </sonar.jdbc.password>
+    </properties>
     <dependencies>
+        <!--websocket依赖 -->
+        <dependency>
+            <groupId>javax.websocket</groupId>
+            <artifactId>javax.websocket-api</artifactId>
+            <version>1.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>7.0</version>
+        </dependency>
+        <!-- 工作流 -->
+        <dependency>
+            <groupId>org.activiti</groupId>
+            <artifactId>activiti-engine</artifactId>
+            <version>5.21.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.activiti</groupId>
+            <artifactId>activiti-spring</artifactId>
+            <version>5.21.0</version>
+        </dependency>
+
         <!-- json转换器 -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -63,7 +98,7 @@
             <artifactId>standard</artifactId>
             <version>1.1.2</version>
         </dependency>
-
+        <!-- mongodb驱动 -->
         <dependency>
             <groupId>org.mongodb</groupId>
             <artifactId>mongo-java-driver</artifactId>
@@ -161,8 +196,12 @@
             <artifactId>commons-io</artifactId>
             <version>1.4</version>
         </dependency>
-
-
+        <!-- https://mvnrepository.com/artifact/redis.clients/jedis -->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>2.9.0</version>
+        </dependency>
         <!-- json-->
 
         <dependency>

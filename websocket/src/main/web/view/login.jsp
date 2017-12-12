@@ -65,7 +65,7 @@
                             if(response.data){
                                 if(response.data.status=="success"){
                                     alert(JSON.stringify(response.data.msg));
-                                    location.href="seeBlog";
+                                    location.href="/seeBlog";
                                 }
                                 else {
                                     alert(JSON.stringify(response.data.msg));

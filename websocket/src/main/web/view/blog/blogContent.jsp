@@ -34,14 +34,12 @@
     <!-- Icomoon -->
     <link rel="stylesheet" href="/static/css/icomoon.css">
     <!-- Bootstrap  -->
-    <link rel="stylesheet" href="/static/css/bootstrap.css">
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
 
     <link rel="stylesheet" href="/static/css/style.css">
     <!-- Modernizr JS -->
     <script src="/static/js/modernizr-2.6.2.min.js"></script>
-    <!-- FOR IE9 below -->
-    <!--[if lt IE 9]>
-    <script src="/static/js/respond.min.js"></script>
+
     <![endif]-->
 </head>
 <body style="background-color: antiquewhite">
